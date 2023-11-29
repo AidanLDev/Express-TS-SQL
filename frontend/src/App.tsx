@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   const getAllTodosUrl = '/todo/all';
   const { data, isLoading, serverError } = useGetData(getAllTodosUrl);
+  console.log({ data, isLoading, serverError });
   return (
     <div className='App'>
       <header className='App-header'>

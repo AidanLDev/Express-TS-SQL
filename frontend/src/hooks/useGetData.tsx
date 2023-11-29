@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import { serverUrl } from '../utils/constants';
 
 export const useGetData = (url: string) => {
   const [data, setData] = useState();
@@ -15,14 +16,14 @@ export const useGetData = (url: string) => {
     setIsLoading(true);
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(`${serverUrl}${url}`);
         const data = await response?.data;
 
         setData(data);
       } catch (err) {
         const error = err as Error;
         setServerError(error);
-        console.error('Error getting data for url: ', url);
+        console.error("Error getting data for url: ", url);
       } finally {
         setIsLoading(false);
         didRun.current = true;
