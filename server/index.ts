@@ -1,5 +1,7 @@
-import express, { Express, Request, Response, Application } from 'express';
+import express, { Application } from 'express';
 import dotenv from 'dotenv';
+
+import todosRouter from './routes/todos';
 
 // For env file
 dotenv.config();
@@ -7,9 +9,7 @@ dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 8000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express server whooo serving up some fresh content');
-});
+app.use('/todo', todosRouter);
 
 app.listen(port, () => {
   console.log(
