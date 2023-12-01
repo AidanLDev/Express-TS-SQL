@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { serverUrl } from '../utils/constants';
 
-export const useGetData = (url: string) => {
-  const [data, setData] = useState();
+export const useGetData = <T,>(url: string) => {
+  const [data, setData] = useState<T[] | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState<Error | null>(null);
   const didRun = useRef<boolean | ((prev: boolean) => boolean)>(false);
