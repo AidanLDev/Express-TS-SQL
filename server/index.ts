@@ -4,18 +4,7 @@ import express, { Application } from 'express';
 import cors from "cors";
 
 import todosRouter from "./routes/todos";
-
-// DB imports
-import Product from './database/product';
-import { getProducts } from './database/dboperations'
-
-// For env file
-
-getProducts().then(res => {
-  console.log(res);
-})
-
-
+import productsRouter from "./routes/products";
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
@@ -23,6 +12,7 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 
 app.use("/todo", todosRouter);
+app.use("/products", productsRouter);
 
 app.listen(port, () => {
   console.log(

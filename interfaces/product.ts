@@ -1,6 +1,6 @@
 export interface IProduct {
   Id: number;
-  ProudctName: string;
+  ProductName: string;
   Quantity: number;
   Price: number;
 }
