@@ -1,24 +1,30 @@
-import React from 'react';
-import { useGetData } from './hooks/useGetData';
-import logo from './logo.svg';
-import './App.css';
+import { useGetData } from "./hooks/useGetData";
+import "./App.css";
+import { AddProductForm } from "./components/addProduct/AddProductForm";
 import { IProduct } from "../../interfaces/product";
 
 function App() {
-  const getAllTodosUrl = "/products/all";
-  const { data, isLoading, serverError } = useGetData<IProduct>(getAllTodosUrl);
+  const getAllProducts = "/products/all";
+  const { data, isLoading, serverError } = useGetData<IProduct>(getAllProducts);
   return (
     <div className="App">
       <header className="App-header">
         <div>
           {isLoading && <h1>Loading</h1>}
-          {serverError && <h1>Something went wrong {serverError.message}</h1>}
-          {data &&
-            data.map((product) => (
-              <p key={`${product.Id}__${product.ProductName}`}>
-                {product.ProductName}
-              </p>
-            ))}
+          {serverError && <p>Something went wrong {serverError.message}</p>}
+          <AddProductForm />
+          {data && (
+            <>
+              <h2>Products</h2>
+              {data.map((product) => (
+                <div key={`${product?.Id}__${product.ProductName}`}>
+                  <p>Name: {product.ProductName}</p>
+                  <p>Price: £{product.Price}</p>
+                  <p>Stock: {product.Quantity}</p>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </header>
     </div>
