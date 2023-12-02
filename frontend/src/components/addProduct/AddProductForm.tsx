@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AddProductInput } from "./AddProductInput";
 import axios from "axios";
 import { serverUrl } from "../../utils/constants";
@@ -10,8 +10,6 @@ export const AddProductForm = () => {
 
   const handleSubmitProduct = () => {
     if (productName && price && quantity) {
-      console.log("Submit! ", { productName, price, quantity });
-      // { ProductName: 'PS4', Price: 310, Quantity: 550 }
       const productsToSend = {
         ProductName: productName,
         Price: Number(price),

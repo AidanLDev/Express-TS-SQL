@@ -2,6 +2,7 @@ import { useGetData } from "./hooks/useGetData";
 import "./App.css";
 import { AddProductForm } from "./components/addProduct/AddProductForm";
 import { IProduct } from "../../interfaces/product";
+import { SearchByName } from "./components/SearchByName";
 
 function App() {
   const getAllProducts = "/products/all";
@@ -16,6 +17,7 @@ function App() {
           {data && (
             <>
               <h2>Products</h2>
+              <SearchByName />
               {data.map((product) => (
                 <div key={`${product?.Id}__${product.ProductName}`}>
                   <p>Name: {product.ProductName}</p>
